@@ -6,6 +6,7 @@ using System.Windows.Forms;
 
 namespace PacmanGame
 {
+    public enum Direction { UP, DOWN , LEFT, RIGHT };
     internal static class Program
     {
         /// <summary>
@@ -16,7 +17,7 @@ namespace PacmanGame
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new HomeForm());
         }
     }
 }

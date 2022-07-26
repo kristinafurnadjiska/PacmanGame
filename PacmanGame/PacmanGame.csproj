@@ -46,11 +46,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Items\ActionCell.cs" />
+    <Compile Include="Items\ICell.cs" />
+    <Compile Include="Items\Enemy.cs" />
+    <Compile Include="Items\Game.cs" />
+    <Compile Include="Items\GameCell.cs" />
+    <Compile Include="Items\GameConfig.cs" />
+    <Compile Include="Items\GameScene.cs" />
+    <Compile Include="Items\GameScore.cs" />
+    <Compile Include="Items\ObstacleCell.cs" />
+    <Compile Include="Items\Pacman.cs" />
+    <Compile Include="Items\Portal.cs" />
+    <Compile Include="Screens\GamePlayForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Screens\GamePlayForm.Designer.cs">
+      <DependentUpon>GamePlayForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\HomeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\HomeForm.Designer.cs">
+      <DependentUpon>HomeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
