@@ -12,9 +12,12 @@ namespace PacmanGame
 {
     public partial class GamePlayForm : Form
     {
-        public GamePlayForm()
+        public GamePlayForm(string Name)
         {
             InitializeComponent();
+            
         }
+
+        
     }
 }

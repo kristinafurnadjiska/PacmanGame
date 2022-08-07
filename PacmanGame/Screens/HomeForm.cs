@@ -16,5 +16,14 @@ namespace PacmanGame
         {
             InitializeComponent();
         }
+
+        private void btnSinglePlayer_Click(object sender, EventArgs e)
+        {
+           SinglePlayer sp=new SinglePlayer();
+           if(sp.ShowDialog() == DialogResult.OK)
+           {
+                GamePlayForm gpf = new GamePlayForm("SinglePlayer");
+           }
+        }
     }
 }
