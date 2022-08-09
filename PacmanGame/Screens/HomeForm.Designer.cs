@@ -40,7 +40,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(98, 38);
+            this.pictureBox1.Location = new System.Drawing.Point(50, 41);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(370, 136);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -49,10 +49,13 @@
             // 
             // btnSinglePlayer
             // 
-            this.btnSinglePlayer.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnSinglePlayer.Location = new System.Drawing.Point(98, 200);
+            this.btnSinglePlayer.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.btnSinglePlayer.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSinglePlayer.Font = new System.Drawing.Font("Snap ITC", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSinglePlayer.ForeColor = System.Drawing.Color.Yellow;
+            this.btnSinglePlayer.Location = new System.Drawing.Point(50, 203);
             this.btnSinglePlayer.Name = "btnSinglePlayer";
-            this.btnSinglePlayer.Size = new System.Drawing.Size(372, 42);
+            this.btnSinglePlayer.Size = new System.Drawing.Size(370, 55);
             this.btnSinglePlayer.TabIndex = 1;
             this.btnSinglePlayer.Text = "Single Player";
             this.btnSinglePlayer.UseVisualStyleBackColor = false;
@@ -60,35 +63,46 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(98, 428);
+            this.textBox1.Location = new System.Drawing.Point(50, 432);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(372, 22);
             this.textBox1.TabIndex = 4;
             // 
             // btnMultiplayer
             // 
-            this.btnMultiplayer.Location = new System.Drawing.Point(98, 275);
+            this.btnMultiplayer.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.btnMultiplayer.Cursor = System.Windows.Forms.Cursors.WaitCursor;
+            this.btnMultiplayer.Font = new System.Drawing.Font("Snap ITC", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMultiplayer.ForeColor = System.Drawing.Color.Yellow;
+            this.btnMultiplayer.Location = new System.Drawing.Point(50, 278);
             this.btnMultiplayer.Name = "btnMultiplayer";
-            this.btnMultiplayer.Size = new System.Drawing.Size(372, 42);
+            this.btnMultiplayer.Size = new System.Drawing.Size(370, 55);
             this.btnMultiplayer.TabIndex = 5;
             this.btnMultiplayer.Text = "Multiplayer";
-            this.btnMultiplayer.UseVisualStyleBackColor = true;
+            this.btnMultiplayer.UseVisualStyleBackColor = false;
             this.btnMultiplayer.UseWaitCursor = true;
+            this.btnMultiplayer.Click += new System.EventHandler(this.btnMultiplayer_Click);
             // 
             // btnConfig
             // 
-            this.btnConfig.Location = new System.Drawing.Point(98, 351);
+            this.btnConfig.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.btnConfig.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnConfig.Font = new System.Drawing.Font("Snap ITC", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConfig.ForeColor = System.Drawing.Color.Yellow;
+            this.btnConfig.Location = new System.Drawing.Point(50, 354);
             this.btnConfig.Name = "btnConfig";
-            this.btnConfig.Size = new System.Drawing.Size(372, 42);
+            this.btnConfig.Size = new System.Drawing.Size(370, 55);
             this.btnConfig.TabIndex = 6;
             this.btnConfig.Text = "Configuration";
-            this.btnConfig.UseVisualStyleBackColor = true;
+            this.btnConfig.UseVisualStyleBackColor = false;
+            this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
             // 
             // HomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(567, 541);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(467, 507);
             this.Controls.Add(this.btnConfig);
             this.Controls.Add(this.btnMultiplayer);
             this.Controls.Add(this.textBox1);

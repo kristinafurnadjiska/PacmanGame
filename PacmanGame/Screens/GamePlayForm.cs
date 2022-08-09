@@ -12,12 +12,14 @@ namespace PacmanGame
 {
     public partial class GamePlayForm : Form
     {
-        public GamePlayForm(string Name)
+        public GamePlayForm(string Name, int Conf)
         {
             InitializeComponent();
-            
         }
 
-        
+        private void GamePlayForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

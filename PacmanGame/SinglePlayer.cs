@@ -28,7 +28,6 @@ namespace PacmanGame
             }
             else
             {
-              
                 errorProvider1.SetError(tbName, null);  
             }
         }

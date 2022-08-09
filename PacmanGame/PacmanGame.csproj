@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Configuration.Designer.cs">
+      <DependentUpon>Configuration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Items\ActionCell.cs" />
     <Compile Include="Items\ICell.cs" />
     <Compile Include="Items\Enemy.cs" />
@@ -83,6 +89,9 @@
     <Compile Include="SinglePlayer.Designer.cs">
       <DependentUpon>SinglePlayer.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Configuration.resx">
+      <DependentUpon>Configuration.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -97,6 +106,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\HomeForm.resx">
       <DependentUpon>HomeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\Multiplayer.resx">
+      <DependentUpon>Multiplayer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SinglePlayer.resx">
       <DependentUpon>SinglePlayer.cs</DependentUpon>
