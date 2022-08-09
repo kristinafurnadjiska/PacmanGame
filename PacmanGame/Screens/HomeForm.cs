@@ -12,37 +12,55 @@ namespace PacmanGame
 {
     public partial class HomeForm : Form
     {
+        public string player { get; set; }
+        public Configuration config { get; set; }
+
         public HomeForm()
         {
             InitializeComponent();
+            player = "";
+            config = new Configuration(this);
         }
-
+        
         private void btnSinglePlayer_Click(object sender, EventArgs e)
         {
-           SinglePlayer sp=new SinglePlayer();
-           Configuration conf=new Configuration();
-           if(sp.ShowDialog() == DialogResult.OK)
-           {
-                GamePlayForm gpf = new GamePlayForm("SinglePlayer",conf.SelectedConfiguration);
-                this.Hide();
-                gpf.ShowDialog();
+            SinglePlayer sp = new SinglePlayer();
+            if (sp.ShowDialog() == DialogResult.OK)
+            {
+                player = "SinglePlayer";
+                btnPlay.Enabled = true;
             }
         }
 
         private void btnMultiplayer_Click(object sender, EventArgs e)
         {
-            Multiplayer mp=new Multiplayer();
-            if(mp.ShowDialog() == DialogResult.OK)
+            Multiplayer mp = new Multiplayer();
+
+            if (mp.ShowDialog() == DialogResult.OK)
             {
-                GamePlayForm gpf = new GamePlayForm("Multiplayer", conf.SelectedConfiguration);
-                this.Hide();
-                gpf.ShowDialog();
+                player = "Multiplayer";
+                btnPlay.Enabled = true;
             }
         }
 
         private void btnConfig_Click(object sender, EventArgs e)
         {
-            Configuration config=new Configuration();
+            Configuration config = new Configuration(this);
+            this.Hide();
+            config.ShowDialog();
+        }
+
+        private void btnPlay_Click(object sender, EventArgs e)
+        {
+            if (player == "")
+            {
+                btnPlay.Enabled = false;
+                return;
+            }
+            GamePlayForm gpf = new GamePlayForm(player, config.gameConfig);
+            this.Hide();
+            gpf.ShowDialog();
         }
     }
+
 }

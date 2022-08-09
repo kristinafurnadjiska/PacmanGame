@@ -16,7 +16,6 @@ namespace PacmanGame
         public SinglePlayer()
         {
             InitializeComponent();
-            //btnOk.Enabled = false;
         }
 
         private void textBox1_Validating(object sender, CancelEventArgs e)

@@ -34,6 +34,8 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnMultiplayer = new System.Windows.Forms.Button();
             this.btnConfig = new System.Windows.Forms.Button();
+            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
+            this.btnPlay = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -97,12 +99,26 @@
             this.btnConfig.UseVisualStyleBackColor = false;
             this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
             // 
+            // btnPlay
+            // 
+            this.btnPlay.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.btnPlay.Font = new System.Drawing.Font("Snap ITC", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPlay.ForeColor = System.Drawing.Color.Red;
+            this.btnPlay.Location = new System.Drawing.Point(173, 477);
+            this.btnPlay.Name = "btnPlay";
+            this.btnPlay.Size = new System.Drawing.Size(120, 46);
+            this.btnPlay.TabIndex = 7;
+            this.btnPlay.Text = "PLAY";
+            this.btnPlay.UseVisualStyleBackColor = false;
+            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
+            // 
             // HomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(467, 507);
+            this.ClientSize = new System.Drawing.Size(466, 546);
+            this.Controls.Add(this.btnPlay);
             this.Controls.Add(this.btnConfig);
             this.Controls.Add(this.btnMultiplayer);
             this.Controls.Add(this.textBox1);
@@ -123,5 +139,7 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button btnMultiplayer;
         private System.Windows.Forms.Button btnConfig;
+        private System.Windows.Forms.HelpProvider helpProvider1;
+        private System.Windows.Forms.Button btnPlay;
     }
 }

@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PacmanGame.Items;
 
 namespace PacmanGame
 {
     public partial class GamePlayForm : Form
     {
-        public GamePlayForm(string Name, int Conf)
+        public GamePlayForm(string Name,GameConfig gameConfig)
         {
             InitializeComponent();
         }

@@ -6,11 +6,18 @@ using System.Threading.Tasks;
 
 namespace PacmanGame.Items
 {
-    public enum Level { Easy, Medium, Hard, Advanced}
+    //public enum Level { Easy, Medium, Hard}
     public class GameConfig
     {
-        public Level Level { get; set; }
+        public string Level { get; set; }
         public int NumberOfEnemeies { get; set; }
         public int NumberOfPortals { get; set; }
+
+        public GameConfig(string level, int numberOfEnemeies, int numberOfPortals)
+        {
+            Level = level;
+            NumberOfEnemeies = numberOfEnemeies;
+            NumberOfPortals = numberOfPortals;
+        }
     }
 }

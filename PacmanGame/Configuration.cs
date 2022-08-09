@@ -7,42 +7,55 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PacmanGame.Items;
 
 namespace PacmanGame
 {
     public partial class Configuration : Form
     {
-        public int SelectedConfiguration { get; set; } // 1-easy 2-medium 3-hard
-
-        public Configuration()
+        public GameConfig gameConfig { get; set; }
+        public HomeForm home { get; set; }
+        public Configuration(HomeForm home)
         {
             InitializeComponent();
-            this.SelectedConfiguration = 1;
+            cbLevel.SelectedIndex = 0;
+            this.home = home;
         }
 
-        private void btnEasy_Click(object sender, EventArgs e)
+
+        private void cbLevel_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SelectedConfiguration = 1;
+            if (cbLevel.SelectedIndex == 0)
+            {
+                nudEnemie.Value = 1;
+                nudPortals.Value = 0;
+                nudEnemie.Enabled = false;
+                nudPortals.Enabled = false;
+            }
+            else if (cbLevel.SelectedIndex == 1)
+            {
+                nudEnemie.Value = 2;
+                nudPortals.Value = 2;
+                nudEnemie.Enabled = false;
+                nudPortals.Enabled = false;
+            }
+            else
+            {
+                nudEnemie.Minimum = 3;
+                nudPortals.Minimum = 4;
+                nudEnemie.Enabled = true;
+                nudPortals.Enabled = true;
+            }
+            
         }
 
-        private void btnMedium_Click(object sender, EventArgs e)
-        {
-            SelectedConfiguration = 2;
+        private void btnBack_Click(object sender, EventArgs e)
+        {   
+            gameConfig = new GameConfig(cbLevel.Text, (int)nudEnemie.Value, (int)nudPortals.Value);
+            this.Hide();
+            home.ShowDialog();
         }
 
-        private void btnHard_Click(object sender, EventArgs e)
-        {
-            SelectedConfiguration = 3;
-        }
-
-        private void btnCOk_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.OK;
-        }
-
-        private void btnCCancel_Click(object sender, EventArgs e)
-        {
-            this.DialogResult= DialogResult.Cancel;
-        }
+        
     }
 }

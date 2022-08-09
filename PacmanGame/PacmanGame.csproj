@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Messaging" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -62,6 +63,7 @@
     <Compile Include="Items\GameScore.cs" />
     <Compile Include="Items\ObstacleCell.cs" />
     <Compile Include="Items\Pacman.cs" />
+    <Compile Include="Items\Player.cs" />
     <Compile Include="Items\Portal.cs" />
     <Compile Include="Screens\Multiplayer.cs">
       <SubType>Form</SubType>
