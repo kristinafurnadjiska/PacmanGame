@@ -23,7 +23,9 @@ namespace PacmanGame
            if(sp.ShowDialog() == DialogResult.OK)
            {
                 GamePlayForm gpf = new GamePlayForm("SinglePlayer");
-           }
+                this.Hide();
+                gpf.ShowDialog();
+            }
         }
     }
 }
