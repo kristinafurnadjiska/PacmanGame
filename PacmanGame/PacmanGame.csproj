@@ -53,6 +53,7 @@
     <Compile Include="Configuration.Designer.cs">
       <DependentUpon>Configuration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utils\Constants.cs" />
     <Compile Include="Items\ActionCell.cs" />
     <Compile Include="Items\ICell.cs" />
     <Compile Include="Items\Enemy.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="SinglePlayer.Designer.cs">
       <DependentUpon>SinglePlayer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utils\RectangleTemplate.cs" />
     <EmbeddedResource Include="Configuration.resx">
       <DependentUpon>Configuration.cs</DependentUpon>
     </EmbeddedResource>
@@ -115,6 +117,9 @@
     <EmbeddedResource Include="SinglePlayer.resx">
       <DependentUpon>SinglePlayer.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Files\medium.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -128,5 +133,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

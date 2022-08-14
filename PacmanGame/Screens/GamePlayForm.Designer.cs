@@ -32,12 +32,15 @@
             // 
             // GamePlayForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(600, 366);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "GamePlayForm";
             this.Text = "GamePlay";
             this.Load += new System.EventHandler(this.GamePlayForm_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.GamePlayForm_Paint);
+            this.Resize += new System.EventHandler(this.GamePlayForm_Resize);
             this.ResumeLayout(false);
 
         }
