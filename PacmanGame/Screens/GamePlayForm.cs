@@ -81,6 +81,18 @@ namespace PacmanGame
         {
             gameManager.MoveUsers();
             Invalidate(true);
+            if (gameManager.CheckIfFInished())
+            {
+                UserTimer.Stop();
+                DialogResult result = MessageBox.Show("YOU WON!", "Do you want to play another round?", MessageBoxButtons.YesNo);
+
+                if(result == DialogResult.No)
+                {
+                    HomeForm home = new HomeForm();
+                    this.Hide();
+                    home.ShowDialog();
+                }    
+            }   
         }
     }
 }

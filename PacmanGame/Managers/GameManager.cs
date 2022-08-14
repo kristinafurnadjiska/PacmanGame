@@ -66,6 +66,7 @@ namespace PacmanGame.Managers
             {
                 MoveUser(user);
             }
+            CollectAwards();
         }
 
         public bool UpdateUserDirection(Direction direction, String UserID)
@@ -87,6 +88,31 @@ namespace PacmanGame.Managers
             current.Direction = direction;
 
             return true;
+        }
+
+        public void CollectAwards()
+        {
+            foreach(Pacman user in UserManager.Users)
+            {
+                CollectUserAward(user);
+            }
+        }
+
+        public void CollectUserAward(Pacman user)
+        {
+            Point position = user.Position;
+            ActionCell cell = Cells[position.X, position.Y] as ActionCell;
+            if (cell != null && cell.HasAward)
+            {
+                cell.HasAward = false;
+                ActionManager.Awards.Remove(position);
+                user.CollectedStars += 1;
+            }
+        }
+
+        public bool CheckIfFInished()
+        {
+            return ActionManager.Awards.Count == 0;
         }
     }
 }
