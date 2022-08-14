@@ -38,9 +38,8 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "GamePlayForm";
             this.Text = "GamePlay";
-            this.Load += new System.EventHandler(this.GamePlayForm_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.GamePlayForm_Paint);
-            this.Resize += new System.EventHandler(this.GamePlayForm_Resize);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GamePlayForm_KeyDown);
             this.ResumeLayout(false);
 
         }

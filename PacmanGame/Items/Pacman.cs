@@ -7,12 +7,34 @@ using System.Threading.Tasks;
 
 namespace PacmanGame.Items
 {
-    public class Pacman
+    public class Pacman : ICell
     {
         public string Id { get; set; }
         public string Name { get; set; }
         public Color Color { get; set; }
-        public Point Position { get; set; }
-        public Direction Direction { get; set; }    
+        public Direction Direction { get; set; }
+
+        public Pacman(Point position, string id, string name, Color color, Direction direction) : base(position)
+        {
+            Id = id;
+            Name = name;
+            Color = color;
+            Direction = direction;
+        }
+
+        public override void Draw(Graphics g)
+        {
+            Brush brush = new SolidBrush(Color);
+            g.FillEllipse(brush, Borders.X + 5, Borders.Y + 5, 20, 20);
+            brush.Dispose();
+        }
+
+        public void Move(Point position)
+        {
+            this.Position = position;
+            CalculateBorders(position);
+        }
     }
+
+    
 }

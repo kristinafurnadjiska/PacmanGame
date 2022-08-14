@@ -17,8 +17,14 @@ namespace PacmanGame.Items
         public ICell(Point position)
         {
             Position = position;
+            CalculateBorders(position);
+        }
+
+        public void CalculateBorders(Point position)
+        {
             Borders = new Rectangle(Position.Y * Constants.CELL_SIZE, Position.X * Constants.CELL_SIZE, Constants.CELL_SIZE, Constants.CELL_SIZE);
         }
+
         public virtual void Draw(Graphics g) { }
     }
 }
