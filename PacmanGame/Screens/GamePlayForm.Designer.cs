@@ -28,7 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.UserTimer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
+            // 
+            // UserTimer
+            // 
+            this.UserTimer.Tick += new System.EventHandler(this.UserTimer_Tick);
             // 
             // GamePlayForm
             // 
@@ -38,6 +44,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "GamePlayForm";
             this.Text = "GamePlay";
+            this.Load += new System.EventHandler(this.GamePlayForm_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.GamePlayForm_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GamePlayForm_KeyDown);
             this.ResumeLayout(false);
@@ -45,5 +52,7 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.Timer UserTimer;
     }
 }

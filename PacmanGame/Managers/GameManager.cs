@@ -45,10 +45,33 @@ namespace PacmanGame.Managers
             UserManager.Draw(g);
         }
 
-        public bool MoveUser(Direction direction)
+        public bool MoveUser(Pacman current)
+        {
+            Direction direction = current.Direction;
+            Point position = current.Position;
+            List<Direction> actions = (Cells[position.X, position.Y] as ActionCell).Actions;
+            if (!actions.Contains(direction))
+            {
+                return false;
+            }
+
+            current.Move(ActionManager.UpdatePosition(position, direction));
+
+            return true;
+        }
+
+        public void MoveUsers()
+        {
+            foreach(Pacman user in UserManager.Users)
+            {
+                MoveUser(user);
+            }
+        }
+
+        public bool UpdateUserDirection(Direction direction, String UserID)
         {
             //TO DO Add dynamic id
-            Pacman current = UserManager.getUserById("1");
+            Pacman current = UserManager.getUserById(UserID);
             if (current == null)
             {
                 return false;
@@ -61,7 +84,7 @@ namespace PacmanGame.Managers
                 return false;
             }
 
-            current.Move(ActionManager.UpdatePosition(position, direction));
+            current.Direction = direction;
 
             return true;
         }

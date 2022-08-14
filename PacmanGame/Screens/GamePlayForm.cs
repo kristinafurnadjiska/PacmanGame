@@ -22,19 +22,27 @@ namespace PacmanGame
             InitializeComponent();
             this.Height = Constants.HEIGHT_SIZE * Constants.CELL_SIZE + 50;
             this.Width = Constants.WIDTH_SIZE * Constants.CELL_SIZE + 50;
-            gameManager = new GameManager();            
+            gameManager = new GameManager();
+            InitializeUserTime();
             
             Invalidate(true);
             DoubleBuffered = true;
 
         }
+
+        private void InitializeUserTime()
+        {
+            UserTimer.Interval = 500;
+            UserTimer.Start();
+        }
+
         private void GamePlayForm_Paint(object sender, PaintEventArgs e)
         {
             gameManager.Draw(e.Graphics);
         }
         private bool RegisterKeyPress(Direction direction)
         {
-            return gameManager.MoveUser(direction);
+            return gameManager.UpdateUserDirection(direction, "1");
         }
 
 
@@ -62,6 +70,17 @@ namespace PacmanGame
                
             }
             Invalidate(RegisterKeyPress(direction));
+        }
+
+        private void GamePlayForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UserTimer_Tick(object sender, EventArgs e)
+        {
+            gameManager.MoveUsers();
+            Invalidate(true);
         }
     }
 }
