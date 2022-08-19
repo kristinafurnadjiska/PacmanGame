@@ -15,6 +15,10 @@ namespace PacmanGame
         public string player { get; set; }
         public Configuration config { get; set; }
 
+        public SinglePlayer singlePlayer { get; set; }
+
+        public Multiplayer multiplayer { get; set; }
+
         public HomeForm()
         {
             InitializeComponent();
@@ -28,6 +32,7 @@ namespace PacmanGame
             if (sp.ShowDialog() == DialogResult.OK)
             {
                 player = "SinglePlayer";
+                singlePlayer = new SinglePlayer();
                 btnPlay.Enabled = true;
             }
         }
@@ -39,13 +44,13 @@ namespace PacmanGame
             if (mp.ShowDialog() == DialogResult.OK)
             {
                 player = "Multiplayer";
+                multiplayer = new Multiplayer();
                 btnPlay.Enabled = true;
             }
         }
 
         private void btnConfig_Click(object sender, EventArgs e)
         {
-            Configuration config = new Configuration(this);
             this.Hide();
             config.ShowDialog();
         }
@@ -57,9 +62,24 @@ namespace PacmanGame
                 btnPlay.Enabled = false;
                 return;
             }
-            GamePlayForm gpf = new GamePlayForm(player, config.gameConfig);
-            this.Hide();
-            gpf.ShowDialog();
+            GamePlayForm gpf = null; 
+            if (player == "SinglePlayer")
+            {
+                gpf = new GamePlayForm(config.gameConfig, new List<String> { singlePlayer.Name});
+
+            }
+            if(player == "Multiplayer")
+            {
+                gpf = new GamePlayForm(config.gameConfig, new List<String> {multiplayer.Player1,multiplayer.Player2});
+                
+            }
+
+            if(gpf != null)
+            {
+                this.Hide();
+                gpf.ShowDialog();
+            }
+            
         }
     }
 

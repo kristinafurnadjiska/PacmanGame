@@ -11,7 +11,7 @@ namespace PacmanGame.Managers
     public class EnemyManager
     {
         List<Enemy> Enemies = new List<Enemy>();
-        static Color [] enemyColors = { Color.Red, Color.Green, Color.Blue };
+        static Color [] enemyColors = { Color.Red, Color.Green, Color.Blue, Color.Purple};
 
         public void Initialize(int N)
         {
@@ -20,7 +20,7 @@ namespace PacmanGame.Managers
             for(int i = 0; i < N; i++)
             {
                 Point position = new Point(Constants.HEIGHT_SIZE - 1 - i, Constants.WIDTH_SIZE - 1);
-                Enemy enemy = new Enemy(i + 1, String.Format("Enemy {0}", i + 1), enemyColors[i], position, Direction.UP);
+                Enemy enemy = new Enemy(i + 1, String.Format("Enemy {0}", i + 1), enemyColors[i%4], position, Direction.UP);
                 Enemies.Add(enemy);
             }
         }

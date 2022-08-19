@@ -17,12 +17,13 @@ namespace PacmanGame
     {
        
         public GameManager gameManager { get; set; }
-        public GamePlayForm(string Name,GameConfig gameConfig)
+
+        public GamePlayForm(GameConfig gameConfig, List<String> userNames)
         {
             InitializeComponent();
             this.Height = Constants.HEIGHT_SIZE * Constants.CELL_SIZE + 50;
             this.Width = Constants.WIDTH_SIZE * Constants.CELL_SIZE + 50;
-            gameManager = new GameManager();
+            gameManager = new GameManager(gameConfig, userNames);
             InitializeUserTime();
             
             Invalidate(true);

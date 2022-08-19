@@ -12,12 +12,20 @@ namespace PacmanGame.Managers
     {
         public List<Pacman> Users { get; set; }
 
-        public void Initialize()
+        public static Color [] UserColors = {Color.Yellow, Color.GreenYellow};
+
+        public void Initialize(List<String> UserNames)
         {
             Users = new List<Pacman>();
-            Point position1 = new Point(0, 0);
-            Pacman User1 = new Pacman(position1, "1", "Kristina", Color.Yellow, Direction.DOWN);
-            Users.Add(User1);
+
+            for (int i = 0; i < UserNames.Count; i++)
+            {
+                Point position = new Point(i, 0);
+                Pacman User = new Pacman(position, String.Format("{0}", i+1), UserNames[i], UserColors[i%2], Direction.DOWN);
+                Users.Add(User);
+
+            }
+            
         }
 
         public void Draw(Graphics g)

@@ -20,23 +20,23 @@ namespace PacmanGame.Managers
 
         public EnemyManager EnemyManager { get; set; }
 
-        public GameManager()
+        public GameManager(GameConfig gameConfig, List<String> UserNames)
         {
             ActionManager = new ActionManager();
             ObstacleManager = new ObstacleManager();
             UserManager = new UserManager();
             EnemyManager = new EnemyManager();
 
-            Initialize();
+            Initialize(gameConfig, UserNames);
         }
 
-        private void Initialize()
+        private void Initialize(GameConfig gameConfig, List<String> UserNames)
         {
             Cells = new ICell[Constants.HEIGHT_SIZE, Constants.WIDTH_SIZE];
             ObstacleManager.Initialize(Cells);
             ActionManager.Initialize(Cells, ObstacleManager.Obstacles);
-            UserManager.Initialize();
-            EnemyManager.Initialize(3);
+            UserManager.Initialize(UserNames);
+            EnemyManager.Initialize(gameConfig.NumberOfEnemeies);
         }
 
         public void DrawCells(Graphics g)
