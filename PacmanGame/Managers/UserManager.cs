@@ -48,5 +48,10 @@ namespace PacmanGame.Managers
 
             return null;
         }
+
+        public String getStatus()
+        {
+            return Users.Select(user => user.getStatus()).Aggregate((a, b) => a + ", " + b);
+        }
     }
 }

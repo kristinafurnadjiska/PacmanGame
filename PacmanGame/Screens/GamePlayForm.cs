@@ -21,7 +21,7 @@ namespace PacmanGame
         public GamePlayForm(GameConfig gameConfig, List<String> userNames)
         {
             InitializeComponent();
-            this.Height = Constants.HEIGHT_SIZE * Constants.CELL_SIZE + 50;
+            this.Height = Constants.HEIGHT_SIZE * Constants.CELL_SIZE + 70;
             this.Width = Constants.WIDTH_SIZE * Constants.CELL_SIZE + 50;
             gameManager = new GameManager(gameConfig, userNames);
             InitializeUserTime();
@@ -33,7 +33,7 @@ namespace PacmanGame
 
         private void InitializeUserTime()
         {
-            UserTimer.Interval = 200;
+            UserTimer.Interval = 500;
             UserTimer.Start();
         }
 
@@ -81,6 +81,7 @@ namespace PacmanGame
         private void UserTimer_Tick(object sender, EventArgs e)
         {
             gameManager.MoveUsers();
+            UsersStatus.Text = gameManager.getStatus();
             Invalidate(true);
             if (gameManager.CheckIfFInished())
             {
@@ -94,6 +95,11 @@ namespace PacmanGame
                     home.ShowDialog();
                 }    
             }   
+        }
+
+        private void UsersStatus_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }

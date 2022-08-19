@@ -113,15 +113,20 @@ namespace PacmanGame.Managers
             ActionCell cell = Cells[position.X, position.Y] as ActionCell;
             if (cell != null && cell.HasAward)
             {
-                cell.HasAward = false;
+                cell.RemoveStar();
                 ActionManager.Awards.Remove(position);
-                user.CollectedStars += 1;
+                user.IncreaseStars();
             }
         }
 
         public bool CheckIfFInished()
         {
             return ActionManager.Awards.Count == 0;
+        }
+
+        public String getStatus()
+        {
+            return UserManager.getStatus();
         }
     }
 }

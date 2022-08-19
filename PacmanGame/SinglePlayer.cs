@@ -12,7 +12,7 @@ namespace PacmanGame
 {
     public partial class SinglePlayer : Form
     {
-        public string Name { get; set; }
+        public string Player { get; set; }
         public SinglePlayer()
         {
             InitializeComponent();
@@ -33,7 +33,7 @@ namespace PacmanGame
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            Name = tbName.Text;
+            Player = tbName.Text;
             this.DialogResult = DialogResult.OK;
         }
 

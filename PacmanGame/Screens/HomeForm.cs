@@ -24,27 +24,24 @@ namespace PacmanGame
             InitializeComponent();
             player = "";
             config = new Configuration(this);
+            singlePlayer = new SinglePlayer();
+            multiplayer = new Multiplayer();
         }
         
         private void btnSinglePlayer_Click(object sender, EventArgs e)
         {
-            SinglePlayer sp = new SinglePlayer();
-            if (sp.ShowDialog() == DialogResult.OK)
+            if (singlePlayer.ShowDialog() == DialogResult.OK)
             {
                 player = "SinglePlayer";
-                singlePlayer = new SinglePlayer();
                 btnPlay.Enabled = true;
             }
         }
 
         private void btnMultiplayer_Click(object sender, EventArgs e)
         {
-            Multiplayer mp = new Multiplayer();
-
-            if (mp.ShowDialog() == DialogResult.OK)
+            if (multiplayer.ShowDialog() == DialogResult.OK)
             {
                 player = "Multiplayer";
-                multiplayer = new Multiplayer();
                 btnPlay.Enabled = true;
             }
         }
@@ -65,7 +62,7 @@ namespace PacmanGame
             GamePlayForm gpf = null; 
             if (player == "SinglePlayer")
             {
-                gpf = new GamePlayForm(config.gameConfig, new List<String> { singlePlayer.Name});
+                gpf = new GamePlayForm(config.gameConfig, new List<String> { singlePlayer.Player});
 
             }
             if(player == "Multiplayer")

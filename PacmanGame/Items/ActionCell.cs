@@ -36,10 +36,15 @@ namespace PacmanGame.Items
 
             if (HasAward)
             {
-                Brush brush = new SolidBrush(Color.Blue);
+                Brush brush = new SolidBrush(Color.BlueViolet);
                 g.FillPolygon(brush, Award, FillMode.Winding);
                 brush.Dispose();
             }
+        }
+
+        public void RemoveStar()
+        {
+            HasAward = false;
         }
     }
 }

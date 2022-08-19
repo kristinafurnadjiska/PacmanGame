@@ -65,6 +65,16 @@ namespace PacmanGame.Items
             this.Direction = direction;
             calculateSweepAngle(direction);
         }
+
+        public String getStatus()
+        {
+            return String.Format("{0} : {1} stars", Name, CollectedStars);
+        }
+
+        public void IncreaseStars()
+        {
+            CollectedStars += 1;
+        }
     }
 
     
