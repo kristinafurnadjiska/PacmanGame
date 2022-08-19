@@ -20,7 +20,7 @@ namespace PacmanGame
 
         public static float OBSTACLE_SIZE = CELL_SIZE / 4;
 
-        public static float OBSTACLE_PADDING = (CELL_SIZE  - OBSTACLE_SIZE)/2;
+        public static float OBSTACLE_PADDING = (CELL_SIZE - OBSTACLE_SIZE) / 2;
 
         public static RectangleTemplate CIRCLE = new RectangleTemplate(OBSTACLE_PADDING, OBSTACLE_PADDING, OBSTACLE_SIZE, OBSTACLE_SIZE);
 
@@ -32,13 +32,24 @@ namespace PacmanGame
 
         public static RectangleTemplate RECTANGLE_RIGHT = new RectangleTemplate(HALF_CELL_SIZE, OBSTACLE_PADDING, HALF_CELL_SIZE, OBSTACLE_SIZE);
 
-        public static List<Point> STAR = new List<Point>() {
-            new Point(HALF_CELL_SIZE,CELL_SIZE/5),
-            new Point((CELL_SIZE*4)/6, (CELL_SIZE*4)/5),
-            new Point(CELL_SIZE*2/9, (CELL_SIZE*2)/5), 
-            new Point((CELL_SIZE*7)/9, (CELL_SIZE*2)/5),
-            new Point(CELL_SIZE*2/6, (CELL_SIZE*4)/5)
+        public static int CIRCLE_OFFSET = 5;
+
+        public static List<Point> Enemy = new List<Point> {
+            new Point(CIRCLE_OFFSET, HALF_CELL_SIZE),
+            new Point(CELL_SIZE/6, CELL_SIZE*5/6),
+            new Point(CELL_SIZE*2/6, CELL_SIZE*4/6),
+            new Point(HALF_CELL_SIZE, CELL_SIZE*5/6),
+            new Point(CELL_SIZE*4/6, CELL_SIZE*4/6),
+            new Point(CELL_SIZE*5/6, CELL_SIZE*5/6),
+            new Point(CELL_SIZE - CIRCLE_OFFSET, HALF_CELL_SIZE)
         };
 
+        public static List<Point> STAR = new List<Point>() {
+            new Point(HALF_CELL_SIZE,CELL_SIZE/5),
+            new Point((CELL_SIZE*9)/12, (CELL_SIZE*4)/5),
+            new Point(CELL_SIZE/6, (CELL_SIZE*2)/5), 
+            new Point((CELL_SIZE*5)/6, (CELL_SIZE*2)/5),
+            new Point(CELL_SIZE*3/12, (CELL_SIZE*4)/5)
+        };
     }
 }

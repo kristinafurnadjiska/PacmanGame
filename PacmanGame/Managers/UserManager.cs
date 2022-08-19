@@ -16,7 +16,7 @@ namespace PacmanGame.Managers
         {
             Users = new List<Pacman>();
             Point position1 = new Point(0, 0);
-            Pacman User1 = new Pacman(position1, "1", "Kristina", Color.Green, Direction.DOWN);
+            Pacman User1 = new Pacman(position1, "1", "Kristina", Color.Yellow, Direction.DOWN);
             Users.Add(User1);
         }
 

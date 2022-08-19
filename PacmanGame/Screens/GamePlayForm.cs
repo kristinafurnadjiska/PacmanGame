@@ -32,7 +32,7 @@ namespace PacmanGame
 
         private void InitializeUserTime()
         {
-            UserTimer.Interval = 500;
+            UserTimer.Interval = 200;
             UserTimer.Start();
         }
 

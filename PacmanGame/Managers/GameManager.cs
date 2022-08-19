@@ -18,11 +18,14 @@ namespace PacmanGame.Managers
 
         public UserManager UserManager { get; set; }
 
+        public EnemyManager EnemyManager { get; set; }
+
         public GameManager()
         {
             ActionManager = new ActionManager();
             ObstacleManager = new ObstacleManager();
             UserManager = new UserManager();
+            EnemyManager = new EnemyManager();
 
             Initialize();
         }
@@ -33,16 +36,22 @@ namespace PacmanGame.Managers
             ObstacleManager.Initialize(Cells);
             ActionManager.Initialize(Cells, ObstacleManager.Obstacles);
             UserManager.Initialize();
+            EnemyManager.Initialize(3);
         }
 
-        public void Draw(Graphics g)
+        public void DrawCells(Graphics g)
         {
             foreach (ICell cell in Cells)
             {
                 cell.Draw(g);
             }
+        }
 
+        public void Draw(Graphics g)
+        {
+            DrawCells(g);
             UserManager.Draw(g);
+            EnemyManager.Draw(g);
         }
 
         public bool MoveUser(Pacman current)
@@ -85,7 +94,7 @@ namespace PacmanGame.Managers
                 return false;
             }
 
-            current.Direction = direction;
+            current.setDirection(direction);
 
             return true;
         }

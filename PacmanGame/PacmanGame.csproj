@@ -54,6 +54,7 @@
       <DependentUpon>Configuration.cs</DependentUpon>
     </Compile>
     <Compile Include="Managers\ActionManager.cs" />
+    <Compile Include="Managers\EnemyManager.cs" />
     <Compile Include="Managers\GameManager.cs" />
     <Compile Include="Managers\ObstacleManager.cs" />
     <Compile Include="Managers\UserManager.cs" />
