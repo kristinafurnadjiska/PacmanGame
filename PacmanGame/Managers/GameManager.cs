@@ -95,6 +95,11 @@ namespace PacmanGame.Managers
             return ActionManager.Awards.Count == 0;
         }
 
+        public bool CheckIfLost()
+        {
+            return UserManager.Users.Count == 0;
+        }
+
         public String getStatus()
         {
             return UserManager.getStatus();

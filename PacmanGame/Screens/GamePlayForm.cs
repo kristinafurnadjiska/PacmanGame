@@ -18,23 +18,18 @@ namespace PacmanGame
        
         public GameManager gameManager { get; set; }
 
+        public GameConfig gameConfig { get; set; }
+
+        public List<String> userNames { get; set; }
+
+        public bool isStarted { get; set; }
+
         public GamePlayForm(GameConfig gameConfig, List<String> userNames)
         {
             InitializeComponent();
-            this.Height = Constants.HEIGHT_SIZE * Constants.CELL_SIZE + 70;
-            this.Width = Constants.WIDTH_SIZE * Constants.CELL_SIZE + 50;
-            gameManager = new GameManager(gameConfig, userNames);
-            InitializeUserTime();
-            
-            Invalidate(true);
-            DoubleBuffered = true;
-
-        }
-
-        private void InitializeUserTime()
-        {
-            UserTimer.Interval = 500;
-            UserTimer.Start();
+            this.gameConfig = gameConfig;
+            this.userNames = userNames;
+            startNewGame();
         }
 
         private void GamePlayForm_Paint(object sender, PaintEventArgs e)
@@ -70,12 +65,16 @@ namespace PacmanGame
                 direction = Direction.UP;
                
             }
+            if(e.KeyCode == Keys.Space)
+            {
+                StartTimer();
+            }
             Invalidate(RegisterKeyPress(direction));
         }
 
-        private void GamePlayForm_Load(object sender, EventArgs e)
+        private void InitializeUserTime()
         {
-
+            UserTimer.Interval = 500;
         }
 
         private void UserTimer_Tick(object sender, EventArgs e)
@@ -83,23 +82,68 @@ namespace PacmanGame
             gameManager.Move();
             UsersStatus.Text = gameManager.getStatus();
             Invalidate(true);
-            if (gameManager.CheckIfFInished())
-            {
-                UserTimer.Stop();
-                DialogResult result = MessageBox.Show("YOU WON!", "Do you want to play another round?", MessageBoxButtons.YesNo);
 
-                if(result == DialogResult.No)
-                {
-                    HomeForm home = new HomeForm();
-                    this.Hide();
-                    home.ShowDialog();
-                }    
-            }   
+            checkWon();
+            checkLost();
+              
+        }
+        public void StartTimer()
+        {
+            if (!isStarted)
+            {
+                tbToStart.Visible = false;
+                isStarted = true;
+                UserTimer.Start();
+            }
         }
 
-        private void UsersStatus_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void startNewGame()
         {
+            this.Height = Constants.HEIGHT_SIZE * Constants.CELL_SIZE + 70;
+            this.Width = Constants.WIDTH_SIZE * Constants.CELL_SIZE + 50;
+            gameManager = new GameManager(gameConfig, userNames);
+            isStarted = false;
+            tbToStart.Visible = true;
 
+            InitializeUserTime();
+
+            Invalidate(true);
+            DoubleBuffered = true;
+        }
+
+        
+        public void checkWon()
+        {
+            if (gameManager.CheckIfFInished())
+            {
+                ShowFinishedDialog("YOU WON");
+            }
+
+        }
+
+        public void checkLost()
+        {
+            if (gameManager.CheckIfLost())
+            {
+                ShowFinishedDialog("YOU LOST");
+            }
+        }
+
+        public void ShowFinishedDialog(String message)
+        {
+            UserTimer.Stop();
+            DialogResult result = MessageBox.Show(message, "Do you want to play another round?", MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.No)
+            {
+                HomeForm home = new HomeForm();
+                this.Hide();
+                home.ShowDialog();
+            }
+            if (result == DialogResult.Yes)
+            {
+                startNewGame();
+            }
         }
     }
 }
