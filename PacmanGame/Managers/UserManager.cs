@@ -106,5 +106,10 @@ namespace PacmanGame.Managers
         {
             return Users.Select(user => user.getStatus()).Aggregate((a, b) => a + ", " + b);
         }
+
+        public List<Point> getPositions()
+        {
+            return Users.Select(item => item.Position).ToList();
+        }
     }
 }

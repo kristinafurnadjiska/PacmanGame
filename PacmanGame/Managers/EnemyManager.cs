@@ -34,19 +34,19 @@ namespace PacmanGame.Managers
             }
         }
 
-        public void MoveEnemy(Enemy enemy, ICell[,] matrix, Point goal)
+        public void MoveEnemy(Enemy enemy, ICell[,] matrix, List<Point> goals)
         {
-            Problem problem = new Problem(matrix, enemy.Position, goal);
+            Problem problem = new Problem(matrix, enemy.Position, goals);
             Node result = Search.breadthFirstSerach(problem);
             Direction direction = result.getNextMove();
             enemy.Move(PointManager.ConvertPoint(enemy.Position, direction));
         }
 
-        public void MoveEnemies(ICell [,] matrix, Point goal)
+        public void MoveEnemies(ICell [,] matrix, List<Point> goals)
         {
             foreach (Enemy enemy in Enemies)
             {
-                MoveEnemy(enemy, matrix, goal);
+                MoveEnemy(enemy, matrix, goals);
             }
         }
     }

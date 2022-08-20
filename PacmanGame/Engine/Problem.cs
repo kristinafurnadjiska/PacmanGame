@@ -12,14 +12,14 @@ namespace PacmanGame.Engine
     public class Problem
     {
         public Point Initial { get; set; }
-        public Point Goal { get; set; }
+        public List<Point> Goals { get; set; }
 
         public ICell [,] Matrix { get; set; }
 
-        public Problem(ICell [,] matrix, Point initial, Point goal)
+        public Problem(ICell [,] matrix, Point initial, List<Point> goals)
         {
             Initial = initial;
-            Goal = goal;
+            Goals = goals;
             Matrix = matrix;
         }
 
@@ -48,6 +48,6 @@ namespace PacmanGame.Engine
             return Matrix[state.X, state.Y] as ActionCell;
         }
 
-        public bool isFinsished(Point state) { return state.Equals(Goal); }
+        public bool isFinsished(Point state) { return Goals.Contains(state); }
     }
 }

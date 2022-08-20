@@ -58,7 +58,7 @@ namespace PacmanGame.Managers
         public void Move()
         {
             UserManager.MoveUsers(Cells);
-            EnemyManager.MoveEnemies(Cells, UserManager.getUserById("1").Position);
+            EnemyManager.MoveEnemies(Cells, UserManager.getPositions());
             List<Point> awards = UserManager.CollectAwards(Cells);
             foreach (Point point in awards)
             {
