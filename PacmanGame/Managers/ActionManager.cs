@@ -63,26 +63,6 @@ namespace PacmanGame.Managers
             return value >= min && value < max;
         }
 
-        public Point UpdatePosition(Point current, Direction direction)
-        {
-            if (direction == Direction.UP)
-            {
-                current.X -= 1;
-            }
-            if (direction == Direction.DOWN)
-            {
-                current.X += 1;
-            }
-            if (direction == Direction.RIGHT)
-            {
-                current.Y += 1;
-            }
-            if (direction == Direction.LEFT)
-            {
-                current.Y -= 1;
-            }
-            return current;
-        }
 
         public List<Point> readAwardsFromFile()
         {

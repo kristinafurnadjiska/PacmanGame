@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PacmanGame.Engine;
 using PacmanGame.Items;
 
 namespace PacmanGame.Managers
@@ -54,33 +55,19 @@ namespace PacmanGame.Managers
             EnemyManager.Draw(g);
         }
 
-        public bool MoveUser(Pacman current)
+        public void Move()
         {
-            Direction direction = current.Direction;
-            Point position = current.Position;
-            List<Direction> actions = (Cells[position.X, position.Y] as ActionCell).Actions;
-            if (!actions.Contains(direction))
+            UserManager.MoveUsers(Cells);
+            EnemyManager.MoveEnemies(Cells, UserManager.getUserById("1").Position);
+            List<Point> awards = UserManager.CollectAwards(Cells);
+            foreach (Point point in awards)
             {
-                return false;
+                ActionManager.Awards.Remove(point);
             }
-
-            current.Move(ActionManager.UpdatePosition(position, direction));
-
-            return true;
-        }
-
-        public void MoveUsers()
-        {
-            foreach(Pacman user in UserManager.Users)
-            {
-                MoveUser(user);
-            }
-            CollectAwards();
         }
 
         public bool UpdateUserDirection(Direction direction, String UserID)
         {
-            //TO DO Add dynamic id
             Pacman current = UserManager.getUserById(UserID);
             if (current == null)
             {
@@ -89,34 +76,7 @@ namespace PacmanGame.Managers
 
             Point position = current.Position;
             List<Direction> actions = (Cells[position.X, position.Y] as ActionCell).Actions;
-            if (!actions.Contains(direction))
-            {
-                return false;
-            }
-
-            current.setDirection(direction);
-
-            return true;
-        }
-
-        public void CollectAwards()
-        {
-            foreach(Pacman user in UserManager.Users)
-            {
-                CollectUserAward(user);
-            }
-        }
-
-        public void CollectUserAward(Pacman user)
-        {
-            Point position = user.Position;
-            ActionCell cell = Cells[position.X, position.Y] as ActionCell;
-            if (cell != null && cell.HasAward)
-            {
-                cell.RemoveStar();
-                ActionManager.Awards.Remove(position);
-                user.IncreaseStars();
-            }
+            return current.updateDirection(actions, direction);
         }
 
         public bool CheckIfFInished()

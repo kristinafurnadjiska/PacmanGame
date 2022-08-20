@@ -23,12 +23,19 @@ namespace PacmanGame.Items
             Name = name;
             Color = color;
             Direction = direction;
-            calculateTailPosition(position);
+            CalculateTailPosition(position);
         }
 
-        public void calculateTailPosition(Point position)
+        public void CalculateTailPosition(Point position)
         {
             Tails = Constants.Enemy.Select(item => new Point(item.X + Borders.X, item.Y + Borders.Y)).ToArray();
+        }
+
+        public void Move(Point position)
+        {
+            this.Position = position;
+            CalculateBorders(position);
+            CalculateTailPosition(position);
         }
 
         public override void Draw(Graphics g)

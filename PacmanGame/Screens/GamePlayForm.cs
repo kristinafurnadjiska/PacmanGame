@@ -80,7 +80,7 @@ namespace PacmanGame
 
         private void UserTimer_Tick(object sender, EventArgs e)
         {
-            gameManager.MoveUsers();
+            gameManager.Move();
             UsersStatus.Text = gameManager.getStatus();
             Invalidate(true);
             if (gameManager.CheckIfFInished())

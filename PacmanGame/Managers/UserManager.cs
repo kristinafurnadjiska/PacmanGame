@@ -12,7 +12,7 @@ namespace PacmanGame.Managers
     {
         public List<Pacman> Users { get; set; }
 
-        public static Color [] UserColors = {Color.Yellow, Color.GreenYellow};
+        public static Color[] UserColors = { Color.Yellow, Color.GreenYellow };
 
         public void Initialize(List<String> UserNames)
         {
@@ -21,11 +21,11 @@ namespace PacmanGame.Managers
             for (int i = 0; i < UserNames.Count; i++)
             {
                 Point position = new Point(i, 0);
-                Pacman User = new Pacman(position, String.Format("{0}", i+1), UserNames[i], UserColors[i%2], Direction.DOWN);
+                Pacman User = new Pacman(position, String.Format("{0}", i + 1), UserNames[i], UserColors[i % 2], Direction.DOWN);
                 Users.Add(User);
 
             }
-            
+
         }
 
         public void Draw(Graphics g)
@@ -34,6 +34,59 @@ namespace PacmanGame.Managers
             {
                 Pacman.Draw(g);
             }
+        }
+
+        public bool MoveUser(Pacman current, ICell[,] Cells)
+        {
+            Direction direction = current.Direction;
+            Point position = current.Position;
+            List<Direction> actions = (Cells[position.X, position.Y] as ActionCell).Actions;
+            if (!actions.Contains(direction))
+            {
+                return false;
+            }
+
+            current.Move(PointManager.ConvertPoint(position, direction));
+
+            return true;
+        }
+
+        public void MoveUsers(ICell[,] Cells)
+        {
+            foreach (Pacman user in Users)
+            {
+                MoveUser(user, Cells);
+            }
+        }
+
+        public List<Point> CollectAwards(ICell [,] Cells)
+        {
+            List<Point> result = new List<Point>();
+            foreach (Pacman user in Users)
+            {
+                Point point = CollectUserAward(user, Cells);
+                if (point == Point.Empty)
+                {
+                    continue;
+                }
+
+                result.Add(point);
+            }
+            return result;
+        }
+
+        public Point CollectUserAward(Pacman user, ICell [,] Cells)
+        {
+            Point position = user.Position;
+            ActionCell cell = Cells[position.X, position.Y] as ActionCell;
+            if (cell != null && cell.HasAward)
+            {
+                cell.RemoveStar();
+                user.IncreaseStars();
+                return position;
+            }
+
+            return Point.Empty;
         }
 
         public Pacman getUserById(String id)

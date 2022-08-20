@@ -43,6 +43,18 @@ namespace PacmanGame.Items
             brush.Dispose();
         }
 
+        public bool updateDirection(List<Direction> actions, Direction direction)
+        {
+            if (!actions.Contains(direction))
+            {
+                return false;
+            }
+
+            setDirection(direction);
+
+            return true;
+        }
+
         public void Move(Point position)
         {
             this.Position = position;

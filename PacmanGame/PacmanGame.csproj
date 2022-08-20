@@ -53,10 +53,16 @@
     <Compile Include="Configuration.Designer.cs">
       <DependentUpon>Configuration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Engine\FIFOQueue.cs" />
+    <Compile Include="Engine\Node.cs" />
+    <Compile Include="Engine\Problem.cs" />
+    <Compile Include="Engine\Queue.cs" />
+    <Compile Include="Engine\Search.cs" />
     <Compile Include="Managers\ActionManager.cs" />
     <Compile Include="Managers\EnemyManager.cs" />
     <Compile Include="Managers\GameManager.cs" />
     <Compile Include="Managers\ObstacleManager.cs" />
+    <Compile Include="Managers\PointManager.cs" />
     <Compile Include="Managers\UserManager.cs" />
     <Compile Include="Utils\Constants.cs" />
     <Compile Include="Items\ActionCell.cs" />
