@@ -86,8 +86,8 @@ namespace PacmanGame.Managers
             }
 
             Point position = current.Position;
-            List<Direction> actions = (Cells[position.X, position.Y] as ActionCell).Actions;
-            return current.updateDirection(actions, direction);
+            ActionCell cell = Cells[position.X, position.Y] as ActionCell;
+            return current.updateDirection(cell, direction);
         }
 
         public bool CheckIfFInished()

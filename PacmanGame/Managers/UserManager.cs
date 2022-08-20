@@ -42,7 +42,18 @@ namespace PacmanGame.Managers
         {
             Direction direction = current.Direction;
             Point position = current.Position;
-            List<Direction> actions = (Cells[position.X, position.Y] as ActionCell).Actions;
+            ActionCell cell = Cells[position.X, position.Y] as ActionCell;
+
+            if(cell != null && cell.Portal != null)
+            {
+                if(direction == cell.Portal.Direction)
+                {
+                    current.Move(cell.Portal.Destination);
+                    return true;
+                }
+            }
+
+            List<Direction> actions = cell.Actions;
             if (!actions.Contains(direction))
             {
                 return false;

@@ -50,8 +50,18 @@ namespace PacmanGame.Items
             brush.Dispose();
         }
 
-        public bool updateDirection(List<Direction> actions, Direction direction)
+        public bool updateDirection(ActionCell cell, Direction direction)
         {
+            List<Direction> actions = cell.Actions;
+
+            if(cell.Portal != null && cell.Portal.Direction == direction)
+            {
+
+                setDirection(direction);
+
+                return true;
+            }
+
             if (!actions.Contains(direction))
             {
                 return false;

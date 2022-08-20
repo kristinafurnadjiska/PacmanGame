@@ -13,9 +13,12 @@ namespace PacmanGame.Managers
     {
         public List<Point> Awards;
 
+        public Dictionary<Point, Portal> Portals;
+
         public void Initialize(ICell[,] Cells, List<Point> Obstacles)
         {
             Awards = readAwardsFromFile();
+            Portals = createPortals();
 
             for (int i = 0; i < Constants.HEIGHT_SIZE; i++)
             {
@@ -24,7 +27,12 @@ namespace PacmanGame.Managers
                     Point p = new Point(i, j);
                     if (!Obstacles.Contains(p))
                     {
-                        Cells[i, j] = new ActionCell(p, Awards.Contains(p), getActionPointDirections(p, Obstacles), false);
+                        Portal portal = null;
+                        if (Portals.ContainsKey(p))
+                        {
+                            portal = Portals[p];
+                        }
+                        Cells[i, j] = new ActionCell(p, Awards.Contains(p), getActionPointDirections(p, Obstacles), portal);
                     }
                 }
             }
@@ -84,6 +92,26 @@ namespace PacmanGame.Managers
             }
 
             return points;
+        }
+
+        public Dictionary<Point,Portal> createPortals()
+        {
+            Dictionary<Point, Portal> portals = new Dictionary<Point, Portal>();
+           
+
+            Point Start = new Point(4, 4);
+            Point End = new Point(4, 16);
+
+            portals.Add(Start,new Portal(End, Direction.LEFT));
+            portals.Add(End,new Portal(Start, Direction.RIGHT));
+
+            Start = new Point(0, 10);
+            End = new Point(8, 10);
+
+            portals.Add(Start,new Portal(End, Direction.UP));
+            portals.Add(End, new Portal(Start, Direction.DOWN));
+
+            return portals;
         }
     }
 
