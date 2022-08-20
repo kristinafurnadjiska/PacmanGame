@@ -11,7 +11,7 @@ namespace PacmanGame.Managers
 {
     public class EnemyManager
     {
-        List<Enemy> Enemies = new List<Enemy>();
+        public List<Enemy> Enemies = new List<Enemy>();
         static Color[] enemyColors = { Color.Red, Color.Green, Color.Blue, Color.Purple };
 
         public void Initialize(int N)
@@ -38,8 +38,11 @@ namespace PacmanGame.Managers
         {
             Problem problem = new Problem(matrix, enemy.Position, goals);
             Node result = Search.breadthFirstSerach(problem);
-            Direction direction = result.getNextMove();
-            enemy.Move(PointManager.ConvertPoint(enemy.Position, direction));
+            if (result != null)
+            {
+                Direction direction = result.getNextMove();
+                enemy.Move(PointManager.ConvertPoint(enemy.Position, direction));
+            }    
         }
 
         public void MoveEnemies(ICell [,] matrix, List<Point> goals)

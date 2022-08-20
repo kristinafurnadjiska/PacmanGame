@@ -55,15 +55,26 @@ namespace PacmanGame.Managers
             EnemyManager.Draw(g);
         }
 
-        public void Move()
+        public void MoveUsers()
         {
             UserManager.MoveUsers(Cells);
-            EnemyManager.MoveEnemies(Cells, UserManager.getPositions());
             List<Point> awards = UserManager.CollectAwards(Cells);
             foreach (Point point in awards)
             {
                 ActionManager.Awards.Remove(point);
             }
+        }
+
+        public void MoveEnemies()
+        {
+            EnemyManager.MoveEnemies(Cells, UserManager.getPositions());
+            checkUsersCaught();
+        }
+
+        public void Move()
+        {
+            MoveUsers();
+            MoveEnemies();           
         }
 
         public bool UpdateUserDirection(Direction direction, String UserID)
@@ -87,6 +98,26 @@ namespace PacmanGame.Managers
         public String getStatus()
         {
             return UserManager.getStatus();
+        }
+
+        public void checkUsersCaught()
+        {
+            List<Pacman> users = new List<Pacman>();
+            foreach(Enemy enemy in EnemyManager.Enemies)
+            {
+                foreach(Pacman user in UserManager.Users)
+                {
+                    if (enemy.Position.Equals(user.Position))
+                    {
+                        users.Add(user);
+                    }
+                }
+            }
+
+            foreach(Pacman user in users)
+            {
+                UserManager.UserCaught(user);
+            }
         }
     }
 }

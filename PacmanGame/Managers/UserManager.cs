@@ -11,12 +11,14 @@ namespace PacmanGame.Managers
     public class UserManager
     {
         public List<Pacman> Users { get; set; }
+        public List<Pacman> CaughtUsers { get; set; }
 
         public static Color[] UserColors = { Color.Yellow, Color.GreenYellow };
 
         public void Initialize(List<String> UserNames)
         {
             Users = new List<Pacman>();
+            CaughtUsers = new List<Pacman>();
 
             for (int i = 0; i < UserNames.Count; i++)
             {
@@ -104,12 +106,23 @@ namespace PacmanGame.Managers
 
         public String getStatus()
         {
-            return Users.Select(user => user.getStatus()).Aggregate((a, b) => a + ", " + b);
+            List<Pacman> temp = new List<Pacman>();
+            temp.AddRange(Users);
+            temp.AddRange(CaughtUsers);
+            return temp.Select(user => user.getStatus()).Aggregate((a, b) => a + ", " + b);
         }
 
         public List<Point> getPositions()
         {
+
             return Users.Select(item => item.Position).ToList();
+        }
+
+        public void UserCaught(Pacman user)
+        {
+            user.IsCaught = true;
+            CaughtUsers.Add(user);
+            Users.Remove(user);
         }
     }
 }

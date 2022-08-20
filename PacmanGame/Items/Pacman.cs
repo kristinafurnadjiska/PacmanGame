@@ -17,6 +17,8 @@ namespace PacmanGame.Items
 
         public int DirectionSweepAngle { get; set; }
 
+        public bool IsCaught { get; set; }
+
         public Pacman(Point position, string id, string name, Color color, Direction direction) : base(position)
         {
             Id = id;
@@ -24,12 +26,17 @@ namespace PacmanGame.Items
             Color = color;
             Direction = direction;
             CollectedStars = 0;
+            IsCaught = false;
 
             calculateSweepAngle(direction);
         }
 
         public override void Draw(Graphics g)
         {
+            if (IsCaught)
+            {
+                return;
+            }
             Brush brush = new SolidBrush(Color);
             g.FillPie(
                 brush,
