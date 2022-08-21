@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using PacmanGame.Items;
 
 namespace PacmanGame.Managers
@@ -15,6 +16,20 @@ namespace PacmanGame.Managers
 
         public static Color[] UserColors = { Color.Yellow, Color.GreenYellow };
 
+        public static Dictionary<Keys, Direction> Player1Keys = new Dictionary<Keys, Direction>(){
+            { Keys.Up, Direction.UP},
+            { Keys.Down, Direction.DOWN},
+            { Keys.Left, Direction.LEFT},
+            { Keys.Right, Direction.RIGHT}
+        };
+
+        public static Dictionary<Keys, Direction> Player2Keys = new Dictionary<Keys, Direction>(){
+            { Keys.W, Direction.UP},
+            { Keys.S, Direction.DOWN},
+            { Keys.A, Direction.LEFT},
+            { Keys.D, Direction.RIGHT}
+        };
+
         public void Initialize(List<String> UserNames)
         {
             Users = new List<Pacman>();
@@ -23,7 +38,7 @@ namespace PacmanGame.Managers
             for (int i = 0; i < UserNames.Count; i++)
             {
                 Point position = new Point(i, 0);
-                Pacman User = new Pacman(position, String.Format("{0}", i + 1), UserNames[i], UserColors[i % 2], Direction.DOWN);
+                Pacman User = new Pacman(position, String.Format("{0}", i + 1), UserNames[i], UserColors[i % 2], Direction.DOWN, getKeysForUserId(i+1));
                 Users.Add(User);
 
             }
@@ -44,9 +59,9 @@ namespace PacmanGame.Managers
             Point position = current.Position;
             ActionCell cell = Cells[position.X, position.Y] as ActionCell;
 
-            if(cell != null && cell.Portal != null)
+            if (cell != null && cell.Portal != null)
             {
-                if(direction == cell.Portal.Direction)
+                if (direction == cell.Portal.Direction)
                 {
                     current.Move(cell.Portal.Destination);
                     return true;
@@ -72,7 +87,7 @@ namespace PacmanGame.Managers
             }
         }
 
-        public List<Point> CollectAwards(ICell [,] Cells)
+        public List<Point> CollectAwards(ICell[,] Cells)
         {
             List<Point> result = new List<Point>();
             foreach (Pacman user in Users)
@@ -88,7 +103,7 @@ namespace PacmanGame.Managers
             return result;
         }
 
-        public Point CollectUserAward(Pacman user, ICell [,] Cells)
+        public Point CollectUserAward(Pacman user, ICell[,] Cells)
         {
             Point position = user.Position;
             ActionCell cell = Cells[position.X, position.Y] as ActionCell;
@@ -104,9 +119,9 @@ namespace PacmanGame.Managers
 
         public Pacman getUserById(String id)
         {
-            foreach(Pacman Pacman in Users)
+            foreach (Pacman Pacman in Users)
             {
-                if(Pacman.Id == id)
+                if (Pacman.Id == id)
                 {
                     return Pacman;
                 }
@@ -134,6 +149,20 @@ namespace PacmanGame.Managers
             user.IsCaught = true;
             CaughtUsers.Add(user);
             Users.Remove(user);
+        }
+
+        public Dictionary<Keys, Direction> getKeysForUserId(int id)
+        {
+            if(id == 1)
+            {
+                return Player1Keys;
+            }
+            if(id == 2)
+            {
+                return Player2Keys;
+            }
+
+            return Player1Keys;
         }
     }
 }

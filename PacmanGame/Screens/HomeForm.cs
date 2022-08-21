@@ -48,7 +48,7 @@ namespace PacmanGame
 
         private void btnConfig_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            //this.Hide();
             config.ShowDialog();
         }
 

@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace PacmanGame.Items
 {
@@ -19,7 +20,9 @@ namespace PacmanGame.Items
 
         public bool IsCaught { get; set; }
 
-        public Pacman(Point position, string id, string name, Color color, Direction direction) : base(position)
+        public Dictionary<Keys, Direction> Controls { get; set; }
+
+        public Pacman(Point position, string id, string name, Color color, Direction direction, Dictionary<Keys, Direction> controls) : base(position)
         {
             Id = id;
             Name = name;
@@ -27,6 +30,7 @@ namespace PacmanGame.Items
             Direction = direction;
             CollectedStars = 0;
             IsCaught = false;
+            Controls = controls;
 
             calculateSweepAngle(direction);
         }

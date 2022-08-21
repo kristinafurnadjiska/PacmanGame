@@ -15,14 +15,22 @@ namespace PacmanGame
     {
         public GameConfig gameConfig { get; set; }
         public HomeForm home { get; set; }
+
+        public bool HomeDialog { get; set; }
         public Configuration(HomeForm home)
         {
             InitializeComponent();
-            gameConfig = new GameConfig(Level.Easy,1,0);
+            gameConfig = new GameConfig(Level.Easy, 1, 0);
+            cbLevel.SelectedIndex = 0;
+            nudEnemie.Value = 1;
+            nudPortals.Value = 0;
+            nudEnemie.Enabled = false;
+            nudPortals.Enabled = false;
+            HomeDialog = false;
+
             this.home = home;
         }
-
-
+         
         private void cbLevel_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbLevel.SelectedIndex == 0)
@@ -59,7 +67,7 @@ namespace PacmanGame
         {   
             gameConfig = new GameConfig(getLevel(cbLevel.SelectedIndex), (int)nudEnemie.Value, (int)nudPortals.Value);
             this.Hide();
-            home.ShowDialog();
+            
         }
 
         public Level getLevel(int index)

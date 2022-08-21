@@ -36,40 +36,20 @@ namespace PacmanGame
         {
             gameManager.Draw(e.Graphics);
         }
-        private bool RegisterKeyPress(Direction direction)
+        private bool RegisterKeyPress(Keys keycode)
         {
-            return gameManager.UpdateUserDirection(direction, "1");
+            return gameManager.RegisterKey(keycode);
         }
 
 
         private void GamePlayForm_KeyDown(object sender, KeyEventArgs e)
         {
-            Direction direction = Direction.NONE;
-            if(e.KeyCode == Keys.A)
-            {
-                direction = Direction.LEFT;
-
-            }
-            if (e.KeyCode == Keys.D)
-            {
-                direction = Direction.RIGHT;
-
-            }
-            if (e.KeyCode == Keys.S)
-            {
-                direction = Direction.DOWN;
-
-            }
-            if (e.KeyCode == Keys.W)
-            {
-                direction = Direction.UP;
-               
-            }
+           
             if(e.KeyCode == Keys.Space)
             {
                 StartTimer();
             }
-            Invalidate(RegisterKeyPress(direction));
+            Invalidate(RegisterKeyPress(e.KeyCode));
         }
 
         private void InitializeUserTime()

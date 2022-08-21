@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using PacmanGame.Engine;
 using PacmanGame.Items;
 
@@ -77,17 +78,22 @@ namespace PacmanGame.Managers
             MoveEnemies();           
         }
 
-        public bool UpdateUserDirection(Direction direction, String UserID)
+        public bool UpdateUserDirection(Keys key, Pacman current)
         {
-            Pacman current = UserManager.getUserById(UserID);
-            if (current == null)
+            if (!current.Controls.ContainsKey(key))
             {
                 return false;
             }
 
+            Direction direction = current.Controls[key];
             Point position = current.Position;
             ActionCell cell = Cells[position.X, position.Y] as ActionCell;
             return current.updateDirection(cell, direction);
+        }
+
+        public bool RegisterKey(Keys key)
+        {
+            return UserManager.Users.Select(user => UpdateUserDirection(key, user)).Any(item => item == true);
         }
 
         public bool CheckIfFInished()
