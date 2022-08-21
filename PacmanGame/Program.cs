@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace PacmanGame
 {
-    public enum Direction { UP, DOWN , LEFT, RIGHT };
+    public enum Direction { UP, DOWN , LEFT, RIGHT , NONE};
     internal static class Program
     {
         /// <summary>

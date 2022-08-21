@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Messaging" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,6 +47,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Configuration.Designer.cs">
+      <DependentUpon>Configuration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Engine\FIFOQueue.cs" />
+    <Compile Include="Engine\Node.cs" />
+    <Compile Include="Engine\Problem.cs" />
+    <Compile Include="Engine\Queue.cs" />
+    <Compile Include="Engine\Search.cs" />
+    <Compile Include="Managers\ActionManager.cs" />
+    <Compile Include="Managers\EnemyManager.cs" />
+    <Compile Include="Managers\GameManager.cs" />
+    <Compile Include="Managers\ObstacleManager.cs" />
+    <Compile Include="Managers\PointManager.cs" />
+    <Compile Include="Managers\UserManager.cs" />
+    <Compile Include="Utils\Constants.cs" />
     <Compile Include="Items\ActionCell.cs" />
     <Compile Include="Items\ICell.cs" />
     <Compile Include="Items\Enemy.cs" />
@@ -56,7 +75,14 @@
     <Compile Include="Items\GameScore.cs" />
     <Compile Include="Items\ObstacleCell.cs" />
     <Compile Include="Items\Pacman.cs" />
+    <Compile Include="Items\Player.cs" />
     <Compile Include="Items\Portal.cs" />
+    <Compile Include="Screens\Multiplayer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\Multiplayer.Designer.cs">
+      <DependentUpon>Multiplayer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Screens\GamePlayForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +97,16 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SinglePlayer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SinglePlayer.Designer.cs">
+      <DependentUpon>SinglePlayer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\RectangleTemplate.cs" />
+    <EmbeddedResource Include="Configuration.resx">
+      <DependentUpon>Configuration.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -80,6 +116,24 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Screens\GamePlayForm.resx">
+      <DependentUpon>GamePlayForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\HomeForm.resx">
+      <DependentUpon>HomeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\Multiplayer.resx">
+      <DependentUpon>Multiplayer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SinglePlayer.resx">
+      <DependentUpon>SinglePlayer.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Files\awards.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Files\medium.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -93,5 +147,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
