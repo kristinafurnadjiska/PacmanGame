@@ -30,6 +30,7 @@ namespace PacmanGame
             this.gameConfig = gameConfig;
             this.userNames = userNames;
             startNewGame();
+            
         }
 
         private void GamePlayForm_Paint(object sender, PaintEventArgs e)
@@ -71,7 +72,7 @@ namespace PacmanGame
         {
             if (!isStarted)
             {
-                tbToStart.Visible = false;
+                lbToStart.Visible = false;
                 isStarted = true;
                 UserTimer.Start();
             }
@@ -81,10 +82,12 @@ namespace PacmanGame
         {
             this.Height = Constants.HEIGHT_SIZE * Constants.CELL_SIZE + 70;
             this.Width = Constants.WIDTH_SIZE * Constants.CELL_SIZE + 50;
+            
+            lbToStart.Location= new Point(this.Width / 2 - 160, this.Height / 2 - 50);
             gameManager = new GameManager(gameConfig, userNames);
             isStarted = false;
-            tbToStart.Visible = true;
-
+         
+            lbToStart.Visible= true;
             InitializeUserTime();
 
             Invalidate(true);
@@ -125,5 +128,7 @@ namespace PacmanGame
                 startNewGame();
             }
         }
+
+        
     }
 }

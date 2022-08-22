@@ -12,7 +12,7 @@ namespace PacmanGame.Managers
     public class EnemyManager
     {
         public List<Enemy> Enemies = new List<Enemy>();
-        static Color[] enemyColors = { Color.Red, Color.Green, Color.Blue, Color.Purple };
+        static Color[] enemyColors = { Color.HotPink, Color.Red, Color.CornflowerBlue, Color.Orange };
 
         public void Initialize(int N)
         {
