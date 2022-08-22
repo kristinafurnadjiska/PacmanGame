@@ -41,7 +41,7 @@ namespace PacmanGame.Items
 
             if (HasAward)
             {
-                Brush brush = new SolidBrush(Color.BlueViolet);
+                Brush brush = new SolidBrush(Color.MediumPurple);
                 g.FillPolygon(brush, Award, FillMode.Winding);
                 brush.Dispose();
             }
