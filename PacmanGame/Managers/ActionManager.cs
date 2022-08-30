@@ -15,10 +15,10 @@ namespace PacmanGame.Managers
 
         public Dictionary<Point, Portal> Portals;
 
-        public void Initialize(ICell[,] Cells, List<Point> Obstacles)
+        public void Initialize(ICell[,] Cells, List<Point> Obstacles, int NumberOfPortals)
         {
             Awards = readAwardsFromFile();
-            Portals = createPortals();
+            Portals = createPortals(NumberOfPortals);
 
             for (int i = 0; i < Constants.HEIGHT_SIZE; i++)
             {
@@ -94,23 +94,28 @@ namespace PacmanGame.Managers
             return points;
         }
 
-        public Dictionary<Point,Portal> createPortals()
+        public Dictionary<Point,Portal> createPortals(int NumberOfPortals)
         {
             Dictionary<Point, Portal> portals = new Dictionary<Point, Portal>();
            
+            if(NumberOfPortals >= 2)
+            {
+                Point Start = new Point(4, 4);
+                Point End = new Point(4, 16);
 
-            Point Start = new Point(4, 4);
-            Point End = new Point(4, 16);
+                portals.Add(Start, new Portal(End, Direction.LEFT));
+                portals.Add(End, new Portal(Start, Direction.RIGHT));
 
-            portals.Add(Start,new Portal(End, Direction.LEFT));
-            portals.Add(End,new Portal(Start, Direction.RIGHT));
+            }
 
-            Start = new Point(0, 10);
-            End = new Point(8, 10);
+            if(NumberOfPortals >= 4) {
+                Point Start = new Point(0, 10);
+                Point End = new Point(8, 10);
 
-            portals.Add(Start,new Portal(End, Direction.UP));
-            portals.Add(End, new Portal(Start, Direction.DOWN));
-
+                portals.Add(Start, new Portal(End, Direction.UP));
+                portals.Add(End, new Portal(Start, Direction.DOWN));
+            }
+       
             return portals;
         }
     }

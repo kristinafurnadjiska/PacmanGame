@@ -36,7 +36,7 @@ namespace PacmanGame.Managers
         {
             Cells = new ICell[Constants.HEIGHT_SIZE, Constants.WIDTH_SIZE];
             ObstacleManager.Initialize(Cells);
-            ActionManager.Initialize(Cells, ObstacleManager.Obstacles);
+            ActionManager.Initialize(Cells, ObstacleManager.Obstacles, gameConfig.NumberOfPortals);
             UserManager.Initialize(UserNames);
             EnemyManager.Initialize(gameConfig.NumberOfEnemeies);
         }
